@@ -13,4 +13,4 @@ This function will replace the words that wasn't replace with a generic message.
 
 # Preview
 
-![]()
+![](https://github.com/mglacayo07/betweenStrings/blob/dev/preview.png)
