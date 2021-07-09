@@ -1,16 +1,44 @@
-# This is a sample Python script.
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+def betweenStrings(txt,name,birthday):
 
+    print("The original string is : " + str(txt))
+    if name != "":
+        txt = txt.replace("${name}", name)
+    if birthday != "":
+        txt = txt.replace("${birthday}", birthday)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+    print("Replacing the keys : " + str(txt))
 
+    # initializing keys strings
+    keys = ["${","}"]
 
-# Press the green button in the gutter to run the script.
+    idx1 = 1
+    while idx1 > 0:
+        if keys[0] in txt:
+            idx1 = txt.index(keys[0])
+        else:
+            idx1 = -1
+
+        if keys[1] in txt:
+            idx2 = txt.index(keys[1])
+
+        str = ''
+        if idx1 > 0:
+            # getting elements in between
+            for idx in range(idx1 + len(keys[0]), idx2):
+                str = str + txt[idx]
+            if str in txt:
+                txt = txt.replace("${" + str + "}", "NO DATA")
+
+    return txt
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    txt = "Hello ${name}! your brithday is on ${birthday}"
+    name = input("Name: ")
+    brithday = input("Birthday: ")
+    print(betweenStrings(txt,name,brithday))
+    print()
+    txt = "Hello ${name}! your brithday is on ${birthday}"
+    name = input("Name: ")
+    brithday = input("Birthday: ")
+    print(betweenStrings(txt,name,brithday))
